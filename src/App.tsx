@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Navigation from "./components/Navigation/Navigation";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./components/Pages/HomePage";
+import TransactionsPage from "./components/Pages/TransactionsPage";
+import CategoriesPage from "./components/Pages/CategoriesPage";
+import BudgetPage from "./components/Pages/BudgetPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <React.Fragment>
+      <Router>
+        <Navigation />
+        <Routes>
+          <Route path="/home" element={<HomePage />}></Route>
+          <Route path="/transactions" element={<TransactionsPage />}></Route>
+          <Route path="/categories" element={<CategoriesPage />}></Route>
+          <Route path="/budget" element={<BudgetPage />}></Route>
+          <Route path="*" element={<HomePage />}></Route>
+        </Routes>
+      </Router>
+    </React.Fragment>
   );
 }
 

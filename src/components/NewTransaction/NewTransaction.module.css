@@ -1,0 +1,25 @@
+.container {
+  position: fixed;
+  top: 10%;
+  left: 35%;
+  transform: translate(-25%, 5%);
+  padding: 15px;
+  width: 50vw;
+  height: 80vh;
+  background-color: lightgray;
+  border: 3px solid gray;
+  border-radius: 30px;
+}
+
+/* @media (min-width: 1400px) {
+  .container {
+    transform: translate(-5%, -2.5%);
+  }
+} */
+
+@media (max-width: 1200px) {
+  .container {
+    width: 90vw;
+    left: 27.5%;
+  }
+}

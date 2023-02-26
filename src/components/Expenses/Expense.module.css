@@ -1,0 +1,39 @@
+.container {
+  border: 1px solid#3b3b3d;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 15px;
+  background-color: #e7e7e7;
+  display: flex;
+  justify-content: space-evenly;
+  color: darkgray;
+  font-size: 150%;
+}
+.amount {
+  /* padding: 1rem; */
+  font-size: 150%;
+}
+.title {
+  text-align: left;
+  /* padding: 1rem; */
+}
+
+.bin {
+  /* padding: 1rem; */
+}
+
+.date {
+  /* padding: 1rem; */
+}
+
+.month {
+  font-size: 75%;
+}
+
+.day {
+  font-size: 75%;
+}
+
+.year {
+  font-size: 75%;
+}
