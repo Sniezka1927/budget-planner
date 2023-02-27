@@ -1,30 +1,43 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import newTransactionProps from "../../Interfaces/newTransactionProps";
 import Button from "../UI/Button";
+import FloatingContainer from "../UI/FloatingContainer";
 import Input from "../UI/Input";
 import Label from "../UI/Label";
 import Title from "../UI/Title";
-import styles from "./NewTransaction.module.css";
 const NewTransaction = (props: newTransactionProps) => {
-  const [amount, setAmount] = useState<number | string>(0);
+  const [amount, setAmount] = useState<number>(0);
   const [title, setTitle] = useState<string>("");
   const [category, setCategory] = useState<string>("");
   const [date, setDate] = useState<Date>();
 
-  const categoryHandler = (e: React.ChangeEvent<HTMLInputElement>) => {};
-  const dateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {};
+  const categoryHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCategory(e.target.value);
+  };
+  const dateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDate(new Date(e.target.value));
+  };
   const amountHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAmount(e.target.value);
+    setAmount(Number(e.target.value));
   };
   const titleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
 
-  props.toggle(true);
+  const onClose = () => {
+    props.toggle(false);
+  };
 
+  const addTransaction = () => {
+    props.toggle(false);
+  };
+
+  const onBackdrop = () => {
+    props.toggle(false);
+  };
   return (
-    <div className={styles.container}>
+    <FloatingContainer onBackdrop={onBackdrop}>
       <Title>Add new Transaction</Title>
       <form style={{ textAlign: "left" }}>
         <Label>Amount spend:</Label>
@@ -65,14 +78,14 @@ const NewTransaction = (props: newTransactionProps) => {
         <br />
         <Row>
           <Col xs={6}>
-            <Button onClickHandler={() => {}}>Add Transaction</Button>
+            <Button onClickHandler={addTransaction}>Add Transaction</Button>
           </Col>
           <Col xs={6}>
-            <Button onClickHandler={() => {}}>Cancel</Button>
+            <Button onClickHandler={onClose}>Cancel</Button>
           </Col>
         </Row>
       </form>
-    </div>
+    </FloatingContainer>
   );
 };
 

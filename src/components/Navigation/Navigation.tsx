@@ -7,7 +7,7 @@ const Navigation = () => {
     <Navbar bg="light" expand="lg">
       <Container fluid>
         <Navbar.Brand as={Link} to="/home">
-          Expenses
+          My Planner
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">

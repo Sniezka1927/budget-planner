@@ -1,7 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 import expenseProps from "../../Interfaces/expenseProps";
 import styles from "./Expense.module.css";
-import { TiDelete } from "react-icons/ti";
+import { TiDelete as Icon } from "react-icons/ti";
 
 const Expense = (props: expenseProps) => {
   const expenseMonth = props.date.toLocaleString("en-GB", { month: "long" });
@@ -20,15 +20,18 @@ const Expense = (props: expenseProps) => {
               <div className={styles.year}>{expenseYear}</div>
             </span>
           </Col>
-          <Col xs={7}>
+          <Col xs={4}>
             <span className={styles.title}>{props.title}</span>
+          </Col>
+          <Col xs={3}>
+            <span className={styles.title}>{props.category}</span>
           </Col>
           <Col xs={3}>
             <span className={styles.amount}>${props.amount}</span>
           </Col>
           <Col xs={1}>
             <span className={styles.bin}>
-              <TiDelete size={"1.5rem"} />
+              <Icon size={"1.5rem"} />
             </span>
           </Col>
         </Row>

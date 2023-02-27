@@ -1,0 +1,30 @@
+.container {
+  padding: 15px;
+  width: 50vw;
+  height: fit-content;
+  background-color: lightgray;
+  border: 3px solid gray;
+  border-radius: 30px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  opacity: 0.4;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    width: 90vw;
+  }
+}

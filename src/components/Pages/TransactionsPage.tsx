@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import NewTransaction from "../NewTransaction/NewTransaction";
 import Button from "../UI/Button";
-import Input from "../UI/Input";
-import Label from "../UI/Label";
+// import Input from "../UI/Input";
+// import Label from "../UI/Label";
 import Title from "../UI/Title";
+import Expenses from "../Expenses/Expenses";
 
 const TransactionsPage = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -15,16 +16,21 @@ const TransactionsPage = () => {
   return (
     <Container>
       {isVisible ? <NewTransaction toggle={toggleVisibility} /> : null}
-      <Row
-        onClick={() => {
-          setIsVisible((prevState) => !prevState);
-        }}
-      >
-        <Title>Add new transaction </Title>
+      <Row>
+        <Button
+          onClickHandler={() => {
+            setIsVisible((prevState: boolean) => !prevState);
+          }}
+        >
+          Add new transaction
+        </Button>
       </Row>
       <Row></Row>
       <Row>
         <Title>All Transactions</Title>
+      </Row>
+      <Row>
+        <Expenses />
       </Row>
       <>
         Clicking on the "Add Transaction" button would take the user to the

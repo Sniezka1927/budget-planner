@@ -6,7 +6,6 @@ import Budget from "../Budget/Budget";
 import Remaining from "../Budget/Remaining";
 import Spent from "../Budget/Spent";
 import Expenses from "../Expenses/Expenses";
-import Navigation from "../Navigation/Navigation";
 import Button from "../UI/Button";
 import Title from "../UI/Title";
 
@@ -32,7 +31,7 @@ const HomePage = () => {
         </Col>
       </Row>
       <Row>
-        <Title>Expenses</Title>
+        <Title>Recent Transactions</Title>
       </Row>
       <Row>
         <Col>
