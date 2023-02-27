@@ -7,7 +7,7 @@ interface parameters {
   db: mongoDB.Db;
 }
 */
-const addElement = (req, res, db) => {
+const addElement = (req, res /* db: mongoDB.Db*/) => {
     res.send("");
 };
 exports.default = addElement;

@@ -14,22 +14,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
-const mongoClient_1 = require("./src/mongoClient");
 const addElement_1 = __importDefault(require("./src/addElement"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = 5000; // process.env.PORT |
-let db;
-(function () {
-    return __awaiter(this, void 0, void 0, function* () {
-        db = yield (0, mongoClient_1.connectToDatabase)();
-    });
+/*
+let db: mongoDB.Db;
+(async function () {
+  db = await connectToDatabase();
 })();
+*/
 app.get("/", (req, res) => {
-    res.send("Express + TypeScript Server");
+    res.send("Express + TypeScript Server created for Budget Planner");
 });
 app.post("/api/transactions/add", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    yield (0, addElement_1.default)(req, res, db);
+    yield (0, addElement_1.default)(req, res /*db*/);
 }));
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);

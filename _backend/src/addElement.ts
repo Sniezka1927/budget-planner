@@ -9,7 +9,7 @@ interface parameters {
 }
 */
 
-const addElement = (req: Request, res: Response, db: mongoDB.Db) => {
+const addElement = (req: Request, res: Response /* db: mongoDB.Db*/) => {
   res.send("");
 };
 

@@ -7,18 +7,19 @@ import addElement from "./src/addElement";
 dotenv.config();
 const app: Express = express();
 const port = 5000; // process.env.PORT |
-
+/*
 let db: mongoDB.Db;
 (async function () {
   db = await connectToDatabase();
 })();
+*/
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
+  res.send("Express + TypeScript Server created for Budget Planner");
 });
 
 app.post("/api/transactions/add", async (req: Request, res: Response) => {
-  await addElement(req, res, db);
+  await addElement(req, res /*db*/);
 });
 
 app.listen(port, () => {
