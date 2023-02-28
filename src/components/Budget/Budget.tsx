@@ -1,8 +1,11 @@
 import styles from "./Budget.module.css";
+import { useContext } from "react";
+import BudgetContext from "../../context/BudgetContext";
 const Budget = () => {
+  const budgetContext = useContext(BudgetContext);
   return (
     <div className={styles.container}>
-      <span>Budget: 2000$</span>
+      <span>Budget: {JSON.stringify(budgetContext.budget)}$</span>
     </div>
   );
 };

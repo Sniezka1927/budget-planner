@@ -8,10 +8,11 @@ import HomePage from "./components/Pages/HomePage";
 import TransactionsPage from "./components/Pages/TransactionsPage";
 import CategoriesPage from "./components/Pages/CategoriesPage";
 import BudgetPage from "./components/Pages/BudgetPage";
+import BudgetContextProvider from "./context/BudgetContextProvider";
 
 function App() {
   return (
-    <React.Fragment>
+    <BudgetContextProvider>
       <Router>
         <Navigation />
         <Routes>
@@ -22,7 +23,7 @@ function App() {
           <Route path="*" element={<HomePage />}></Route>
         </Routes>
       </Router>
-    </React.Fragment>
+    </BudgetContextProvider>
   );
 }
 

@@ -6,7 +6,7 @@ import { connectToDatabase } from "./src/mongoClient";
 import addElement from "./src/addElement";
 dotenv.config();
 const app: Express = express();
-const port = 5000; // process.env.PORT |
+const port = process.env.PORT as string | 5000;
 /*
 let db: mongoDB.Db;
 (async function () {

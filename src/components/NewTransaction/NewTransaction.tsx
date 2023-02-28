@@ -1,19 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Col, Row } from "react-bootstrap";
+import BudgetContext from "../../context/BudgetContext";
 import newTransactionProps from "../../Interfaces/newTransactionProps";
 import Button from "../UI/Button";
 import FloatingContainer from "../UI/FloatingContainer";
 import Input from "../UI/Input";
 import Label from "../UI/Label";
 import Title from "../UI/Title";
+
 const NewTransaction = (props: newTransactionProps) => {
   const [amount, setAmount] = useState<number>(0);
   const [title, setTitle] = useState<string>("");
-  const [category, setCategory] = useState<string>("");
-  const [date, setDate] = useState<Date>();
+  const [categoryTitle, setCategoryTitle] = useState<string>("");
+  const [date, setDate] = useState<Date>(new Date());
 
+  const budgetCtx = useContext(BudgetContext);
   const categoryHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setCategory(e.target.value);
+    setCategoryTitle(e.target.value);
   };
   const dateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setDate(new Date(e.target.value));
@@ -30,6 +33,7 @@ const NewTransaction = (props: newTransactionProps) => {
   };
 
   const addTransaction = () => {
+    budgetCtx.addTransaction(date, title, categoryTitle, amount);
     props.toggle(false);
   };
 
@@ -62,7 +66,7 @@ const NewTransaction = (props: newTransactionProps) => {
         <br />
         <Input
           type="text"
-          value={category}
+          value={categoryTitle}
           onChangeHandler={categoryHandler}
           placeholder={"category"}
         ></Input>

@@ -1,7 +1,9 @@
 interface categoryProps {
   id: string;
   title: string;
-  totalAmount: number;
+  maxBudget: Number;
+  totalSpend: Number;
+  amountLeft: Number;
 }
 
 export default categoryProps;

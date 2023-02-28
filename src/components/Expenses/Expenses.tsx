@@ -1,33 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import BudgetContext from "../../context/BudgetContext";
 import Expense from "./Expense";
+import styles from "./Expense.module.css";
 
-const DUMMY_EXPENSES = [
-  {
-    id: "1",
-    amount: 29.0,
-    date: new Date(2023, 10, 10),
-    title: "New TV",
-    category: "Home",
-  },
-  {
-    id: "2",
-    amount: 425.0,
-    date: new Date(2023, 11, 11),
-    title: "New Boots",
-    category: "Needs",
-  },
-  {
-    id: "182731273123",
-    amount: 4500,
-    date: new Date(2023, 12, 12),
-    category: "Needs",
-    title: "New PC",
-  },
-];
 const Expenses = () => {
+  const budgetContext = useContext(BudgetContext);
   return (
     <ul className="list-group">
-      {DUMMY_EXPENSES.map((expenseItem) => {
+      <li className="list-group-item d-flex justify-content-between align-items-center">
+        <Container fluid>
+          <Row>
+            <Col xs={1}>
+              <span className={styles.date}>Date</span>
+            </Col>
+            <Col xs={4}>
+              <span className={styles.title}>Transaction Title</span>
+            </Col>
+            <Col xs={3}>
+              <span className={styles.title}>Transaction Category</span>
+            </Col>
+            <Col xs={3}>
+              <span className={styles.amount}>Amount</span>
+            </Col>
+            <Col xs={1}></Col>
+          </Row>
+        </Container>
+      </li>
+      {budgetContext.transactions.map((expenseItem) => {
         return (
           <Expense
             key={expenseItem.id}

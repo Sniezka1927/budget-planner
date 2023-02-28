@@ -1,3 +1,6 @@
 .amount {
   color: rgb(9, 66, 9);
 }
+.bin {
+  cursor: pointer;
+}
