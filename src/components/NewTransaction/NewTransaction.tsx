@@ -36,8 +36,13 @@ const NewTransaction = (props: newTransactionProps) => {
   };
 
   const addTransaction = () => {
-    budgetCtx.addTransaction(new Date(date), title, categoryTitle, amount);
-    props.toggle(false);
+    if (date === "" && title.length < 1 && amount === 0) {
+      alert("make sure you filled everything correctly");
+      return;
+    } else {
+      budgetCtx.addTransaction(new Date(date), title, categoryTitle, amount);
+      props.toggle(false);
+    }
   };
 
   const onBackdrop = () => {

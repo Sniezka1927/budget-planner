@@ -26,8 +26,13 @@ const NewCategory = (props: newCategoryProps) => {
   };
 
   const addCategory = () => {
-    budgetCtx.addCategory(title, dedicatedAmount);
-    props.toggle(false);
+    if (title.length === 0 && dedicatedAmount === 0) {
+      alert("not ok");
+      return;
+    } else {
+      budgetCtx.addCategory(title, dedicatedAmount);
+      props.toggle(false);
+    }
   };
 
   const onBackdrop = () => {
