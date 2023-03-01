@@ -11,21 +11,21 @@ const defaultBudgetState: defaultState = {
   transactions: [
     {
       id: "1",
-      amount: 29.0,
+      amount: 1000,
       date: new Date(2023, 10, 10),
       title: "New TV",
       categoryTitle: "Home",
     },
     {
       id: "2",
-      amount: 425.0,
+      amount: 100,
       date: new Date(2023, 11, 11),
       title: "New Boots",
       categoryTitle: "Needs",
     },
     {
       id: "3",
-      amount: 4500,
+      amount: 50,
       date: new Date(2023, 12, 12),
       categoryTitle: "Needs",
       title: "New PC",
@@ -76,8 +76,8 @@ const defaultBudgetState: defaultState = {
     },
   ],
   budget: 2000,
-  spent: 0,
-  remaining: 2000,
+  spent: 1150,
+  remaining: 850,
   /*
   addTransaction: () => {},
   removeTransaction: () => {},
@@ -88,17 +88,17 @@ const defaultBudgetState: defaultState = {
 
 const budgetReducer = (
   state: any /*defaultState*/,
-  action: any /*actionPayload*/
+  action: any /* actionPayload*/
 ) => {
   if (action.type === "ADD-TRANSACTION") {
-    console.log(action);
     const selectedCategory = state.categories.find(
       (cat: Category) => cat.title === action.categoryTitle
     );
-    console.log(selectedCategory);
     selectedCategory.maxBudget -= action.amount;
     selectedCategory.totalSpend += action.amount;
     selectedCategory.amountLeft -= action.amount;
+    state.spent += action.amount;
+    state.remaining -= action.amount;
     const transactions = [
       {
         id: JSON.stringify(~~(Math.random() * 10000)),
@@ -129,6 +129,8 @@ const budgetReducer = (
     const updatedTransactions = state.transactions.filter(
       (trans: Transaction) => trans.id !== selectedTransaction.id
     );
+    state.spent -= selectedTransaction.amount;
+    state.remaining += selectedTransaction.amount;
     return {
       transactions: updatedTransactions,
       categories: state.categories,

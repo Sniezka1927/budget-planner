@@ -1,5 +1,9 @@
 interface actionPayload {
-  type: string;
+  type:
+    | "ADD-TRANSACTION"
+    | "REMOVE-TRANSACTION"
+    | "ADD-CATEGORY"
+    | "REMOVE-CATEGORY";
   id?: string;
   date?: Date;
   title?: string;
