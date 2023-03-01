@@ -1,28 +1,33 @@
-import BudgetContextType, { Category } from "../Interfaces/budgetContextType";
+import BudgetContextType from "../Interfaces/budgetContextType";
 import budgetProvider from "../Interfaces/budgetProvider";
 import BudgetContext from "./BudgetContext";
 import { useReducer } from "react";
-const defaultBudgetState = {
+import defaultState from "../Interfaces/defaultState";
+import Category from "../Interfaces/Category";
+// import actionPayload from "../Interfaces/actionPayload";
+import Transaction from "../Interfaces/Transaction";
+
+const defaultBudgetState: defaultState = {
   transactions: [
     {
       id: "1",
       amount: 29.0,
       date: new Date(2023, 10, 10),
       title: "New TV",
-      category: "Home",
+      categoryTitle: "Home",
     },
     {
       id: "2",
       amount: 425.0,
       date: new Date(2023, 11, 11),
       title: "New Boots",
-      category: "Needs",
+      categoryTitle: "Needs",
     },
     {
       id: "3",
       amount: 4500,
       date: new Date(2023, 12, 12),
-      category: "Needs",
+      categoryTitle: "Needs",
       title: "New PC",
     },
   ],
@@ -64,7 +69,7 @@ const defaultBudgetState = {
     },
     {
       id: JSON.stringify(~~(Math.random() * 100000)),
-      title: "Else",
+      title: "Needs",
       maxBudget: 500,
       totalSpend: 0,
       amountLeft: 500,
@@ -81,11 +86,16 @@ const defaultBudgetState = {
   */
 };
 
-const budgetReducer = (state: any, action: any) => {
+const budgetReducer = (
+  state: any /*defaultState*/,
+  action: any /*actionPayload*/
+) => {
   if (action.type === "ADD-TRANSACTION") {
+    console.log(action);
     const selectedCategory = state.categories.find(
       (cat: Category) => cat.title === action.categoryTitle
     );
+    console.log(selectedCategory);
     selectedCategory.maxBudget -= action.amount;
     selectedCategory.totalSpend += action.amount;
     selectedCategory.amountLeft -= action.amount;
@@ -94,12 +104,11 @@ const budgetReducer = (state: any, action: any) => {
         id: JSON.stringify(~~(Math.random() * 10000)),
         amount: action.amount,
         date: action.date,
-        category: action.categoryTitle,
+        categoryTitle: action.categoryTitle,
         title: action.title,
       },
       ...state.transactions,
     ];
-
     return {
       transactions: transactions,
       categories: state.categories,
@@ -108,8 +117,20 @@ const budgetReducer = (state: any, action: any) => {
       remaining: state.remaining,
     };
   } else if (action.type === "REMOVE-TRANSACTION") {
+    const selectedTransaction = state.transactions.find(
+      (trans: Transaction) => trans.id === action.id
+    );
+    const updatedCategory = state.categories.find(
+      (cat: Category) => cat.title === selectedTransaction.categoryTitle
+    );
+    updatedCategory.maxBudget += selectedTransaction.amount;
+    updatedCategory.totalSpend -= selectedTransaction.amount;
+    updatedCategory.amountLeft += selectedTransaction.amount;
+    const updatedTransactions = state.transactions.filter(
+      (trans: Transaction) => trans.id !== selectedTransaction.id
+    );
     return {
-      transactions: state.transactions,
+      transactions: updatedTransactions,
       categories: state.categories,
       budget: state.budget,
       spent: state.spent,
@@ -149,7 +170,7 @@ const budgetReducer = (state: any, action: any) => {
   // if any block catched return default values to prevent errors
   return {
     transactions: state.transactions,
-    categories: state.categoires,
+    categories: state.categories,
     budget: state.budget,
     spent: state.spent,
     remaining: state.remaining,
@@ -177,7 +198,12 @@ const BudgetContextProvider = (props: budgetProvider) => {
     });
   };
 
-  const removeTransactionHandler = (id: string) => {};
+  const removeTransactionHandler = (id: string) => {
+    dispatchBudgetAction({
+      type: "REMOVE-TRANSACTION",
+      id: id,
+    });
+  };
 
   const addCategoryHandler = (title: string, maxBudget: Number) => {
     dispatchBudgetAction({

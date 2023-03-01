@@ -1,9 +1,7 @@
-interface expenseProps {
+export default interface Transaction {
   id: string;
   amount: Number;
-  date: Date;
   title: string;
   categoryTitle: string;
+  date: Date;
 }
-
-export default expenseProps;

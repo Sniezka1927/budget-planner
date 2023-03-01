@@ -6,20 +6,22 @@ import Button from "../UI/Button";
 import FloatingContainer from "../UI/FloatingContainer";
 import Input from "../UI/Input";
 import Label from "../UI/Label";
+import Select from "../UI/Select";
 import Title from "../UI/Title";
 
 const NewTransaction = (props: newTransactionProps) => {
-  const [amount, setAmount] = useState<number>(0);
+  const budgetCtx = useContext(BudgetContext);
+  const [amount, setAmount] = useState<Number>(0);
   const [title, setTitle] = useState<string>("");
   const [categoryTitle, setCategoryTitle] = useState<string>("");
-  const [date, setDate] = useState<Date>(new Date());
+  const [date, setDate] = useState<string>("");
 
-  const budgetCtx = useContext(BudgetContext);
-  const categoryHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const categoryHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log(e.target.value);
     setCategoryTitle(e.target.value);
   };
   const dateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDate(new Date(e.target.value));
+    setDate(e.target.value);
   };
   const amountHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAmount(Number(e.target.value));
@@ -33,7 +35,7 @@ const NewTransaction = (props: newTransactionProps) => {
   };
 
   const addTransaction = () => {
-    budgetCtx.addTransaction(date, title, categoryTitle, amount);
+    budgetCtx.addTransaction(new Date(date), title, categoryTitle, amount);
     props.toggle(false);
   };
 
@@ -64,12 +66,11 @@ const NewTransaction = (props: newTransactionProps) => {
         <br />
         <Label>Category:</Label>
         <br />
-        <Input
-          type="text"
-          value={categoryTitle}
+        <Select
           onChangeHandler={categoryHandler}
+          options={budgetCtx.categories}
           placeholder={"category"}
-        ></Input>
+        ></Select>
         <br />
         <Label>Date:</Label>
         <br />

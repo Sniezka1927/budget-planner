@@ -34,7 +34,7 @@ const Expenses = () => {
             id={expenseItem.id}
             amount={expenseItem.amount}
             title={expenseItem.title}
-            category={expenseItem.category}
+            categoryTitle={expenseItem.categoryTitle}
             date={expenseItem.date}
           />
         );
