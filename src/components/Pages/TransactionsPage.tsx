@@ -17,6 +17,9 @@ const TransactionsPage = () => {
     <Container>
       {isVisible ? <NewTransaction toggle={toggleVisibility} /> : null}
       <Row>
+        <Title>Transactions</Title>
+      </Row>
+      <Row>
         <Button
           onClickHandler={() => {
             setIsVisible((prevState: boolean) => !prevState);
@@ -25,10 +28,7 @@ const TransactionsPage = () => {
           Add new transaction
         </Button>
       </Row>
-      <Row></Row>
-      <Row>
-        <Title>Transactions</Title>
-      </Row>
+
       <Row>
         <Expenses />
       </Row>

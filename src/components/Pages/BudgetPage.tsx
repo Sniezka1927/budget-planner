@@ -18,6 +18,8 @@ import {
 import { Bar } from "react-chartjs-2";
 import { faker } from "@faker-js/faker";
 import BudgetContext from "../../context/BudgetContext";
+import chartData from "../../Interfaces/chartData";
+import Category from "../../Interfaces/Category";
 
 ChartJS.register(
   CategoryScale,
@@ -28,32 +30,30 @@ ChartJS.register(
   Legend
 );
 
-const options = {
-  responsive: true,
-  // plugins: {
-  // legend: {
-  // position: "top" as const,
-  // },
-  // title: {
-  //   display: true,
-  //   text: "Chart.js Bar Chart",
-  // },
-  // },
-};
-
-const labels = ["Home"];
-
-const BudgetPage = () => {
-  const [budget, setBudget] = useState<Number>(Number);
-
+const BudgetPage: React.FC = () => {
   const budgetCtx = useContext(BudgetContext);
+  const [budget, setBudget] = useState<Number>(budgetCtx.budget);
 
-  const [data, setData] = useState({
-    labels,
+  const options = {
+    responsive: true,
+    // plugins: {
+    // legend: {
+    // position: "top" as const,
+    // },
+    // title: {
+    //   display: true,
+    //   text: "Chart.js Bar Chart",
+    // },
+    // },
+  };
+
+  const onLoadLabels = budgetCtx.categories.map((cat: Category) => cat.title);
+  const [data, setData] = useState<chartData>({
+    onLoadLabels,
     datasets: [
       {
         label: "Expenses Total Amount",
-        data: labels.map(() => faker.datatype.number({ min: 0, max: 500 })), // SUM of total expenses in a month
+        data: budgetCtx.categories.map((cat) => Number(cat.totalSpend)), // SUM of total expenses in a month
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
     ],
@@ -67,7 +67,7 @@ const BudgetPage = () => {
         {
           label: "Expenses Total Amount",
           data: budgetCtx.categories.map((cat) => Number(cat.totalSpend)), // SUM of total expenses in a month
-          backgroundColor: "rgba(255, 99, 132, 0.5)",
+          backgroundColor: "rgba(255, 99, 132, 0.8)",
         },
       ],
     };
@@ -97,12 +97,12 @@ const BudgetPage = () => {
       <Row>
         <Button onClickHandler={onSave}>Save</Button>
       </Row>
-      <Row>
+      {/* <Row>
         <Title>Set up budget for each category</Title>
         <Col>
           <Categories />
         </Col>
-      </Row>
+      </Row> */}
       <Row>
         <Title>Expenses Chart</Title>
       </Row>

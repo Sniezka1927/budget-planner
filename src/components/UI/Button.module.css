@@ -1,11 +1,12 @@
 .btn {
-  border: 1px solid blueviolet;
+  border: 1px solid #9f146e;
   border-radius: 15px;
   color: #9f146e;
   margin: 1rem 0.4rem;
   padding: 0.25rem;
   max-width: 20rem;
   width: 100%;
+  background-color: #fce7f4;
 }
 
 @media (max-width: 768px) {

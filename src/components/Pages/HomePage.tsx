@@ -16,9 +16,9 @@ const HomePage = () => {
   };
   return (
     <Container>
-      <Row>
+      {/* <Row>
         <Title>My Budget Planner</Title>
-      </Row>
+      </Row> */}
       <Row>
         <Col>
           <Budget />
@@ -35,11 +35,15 @@ const HomePage = () => {
       </Row>
       <Row>
         <Col>
-          <Expenses />
+          <div style={{ height: "50vh", overflowY: "scroll" }}>
+            <Expenses />
+          </div>
         </Col>
       </Row>
       <Row>
-        <Button onClickHandler={onAdd}>Add new transaction</Button>
+        <Col>
+          <Button onClickHandler={onAdd}>Add new transaction</Button>
+        </Col>
       </Row>
       {/* <Row>
         <Col>

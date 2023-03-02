@@ -6,8 +6,12 @@ const Navigation = () => {
   return (
     <Navbar bg="light" expand="lg">
       <Container fluid>
-        <Navbar.Brand as={Link} to="/home">
-          My Planner
+        <Navbar.Brand
+          as={Link}
+          to="/home"
+          style={{ color: "#9f146e", fontWeight: "bolder" }}
+        >
+          Budget Planner
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">

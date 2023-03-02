@@ -21,7 +21,6 @@ const NewTransaction = (props: newTransactionProps) => {
   const [isCorrect, setIsCorrect] = useState<boolean>(true);
 
   const categoryHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log(e.target.value);
     setCategoryTitle(e.target.value);
   };
   const dateHandler = (e: React.ChangeEvent<HTMLInputElement>) => {

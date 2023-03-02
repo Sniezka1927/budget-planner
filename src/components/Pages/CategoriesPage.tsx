@@ -13,7 +13,9 @@ const CategoriesPage = () => {
   return (
     <Container>
       {isVisible ? <NewCategory toggle={toggleVisibility} /> : null}
-
+      <Row>
+        <Title>Categories:</Title>
+      </Row>
       <Row>
         <Button
           onClickHandler={() => {
@@ -23,9 +25,7 @@ const CategoriesPage = () => {
           Add new category
         </Button>
       </Row>
-      <Row>
-        <Title>Categories:</Title>
-      </Row>
+
       <Row>
         <Col>
           <Categories />
