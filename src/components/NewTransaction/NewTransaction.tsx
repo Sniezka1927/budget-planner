@@ -8,6 +8,7 @@ import Input from "../UI/Input";
 import Label from "../UI/Label";
 import Select from "../UI/Select";
 import Title from "../UI/Title";
+import Alert from "react-bootstrap/Alert";
 
 const NewTransaction = (props: newTransactionProps) => {
   const budgetCtx = useContext(BudgetContext);
@@ -16,6 +17,8 @@ const NewTransaction = (props: newTransactionProps) => {
   const [title, setTitle] = useState<string>("");
   const [categoryTitle, setCategoryTitle] = useState<string>("Shopping");
   const [date, setDate] = useState<string>("");
+
+  const [isCorrect, setIsCorrect] = useState<boolean>(true);
 
   const categoryHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     console.log(e.target.value);
@@ -35,11 +38,15 @@ const NewTransaction = (props: newTransactionProps) => {
     props.toggle(false);
   };
 
-  const addTransaction = () => {
+  const addTransaction = (e: React.SyntheticEvent) => {
+    e.preventDefault();
     if (date === "" && title.length < 1 && amount === 0) {
-      alert("make sure you filled everything correctly");
-      return;
+      setIsCorrect(false);
+      setTimeout(() => {
+        setIsCorrect(true);
+      }, 3000);
     } else {
+      setIsCorrect(true);
       budgetCtx.addTransaction(new Date(date), title, categoryTitle, amount);
       props.toggle(false);
     }
@@ -51,7 +58,12 @@ const NewTransaction = (props: newTransactionProps) => {
   return (
     <FloatingContainer onBackdrop={onBackdrop}>
       <Title>Add new Transaction</Title>
-      <form style={{ textAlign: "left" }}>
+      {!isCorrect ? (
+        <Alert variant={"danger"}>
+          Looks like you didn't fill all fields in the transaction!
+        </Alert>
+      ) : null}
+      <form style={{ textAlign: "left" }} onSubmit={addTransaction}>
         <Label>Amount spend:</Label>
         <br />
         <Input
