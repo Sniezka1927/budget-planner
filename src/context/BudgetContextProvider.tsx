@@ -42,9 +42,9 @@ const defaultBudgetState: defaultState = {
     {
       id: JSON.stringify(~~(Math.random() * 100000)),
       title: "Home",
-      maxBudget: 500,
-      totalSpend: 0,
-      amountLeft: 500,
+      maxBudget: 5000,
+      totalSpend: 1000,
+      amountLeft: 4000,
     },
     {
       id: JSON.stringify(~~(Math.random() * 100000)),
@@ -71,8 +71,8 @@ const defaultBudgetState: defaultState = {
       id: JSON.stringify(~~(Math.random() * 100000)),
       title: "Needs",
       maxBudget: 500,
-      totalSpend: 0,
-      amountLeft: 500,
+      totalSpend: 150,
+      amountLeft: 350,
     },
   ],
   budget: 2000,
@@ -167,6 +167,14 @@ const budgetReducer = (
       spent: state.spent,
       remaining: state.remaining,
     };
+  } else if (action.type === "SET-BUDGET") {
+    return {
+      transactions: state.transactions,
+      categories: state.categories,
+      budget: action.budget,
+      spent: state.spent,
+      remaining: action.budget - state.spent,
+    };
   }
 
   // if any block catched return default values to prevent errors
@@ -221,6 +229,12 @@ const BudgetContextProvider = (props: budgetProvider) => {
       id: id,
     });
   };
+  const setBudgetHandler = (budget: Number) => {
+    dispatchBudgetAction({
+      type: "SET-BUDGET",
+      budget: budget,
+    });
+  };
 
   const budgetContext: BudgetContextType = {
     transactions: budgetState.transactions,
@@ -232,6 +246,7 @@ const BudgetContextProvider = (props: budgetProvider) => {
     removeTransaction: removeTransactionHandler,
     addCategory: addCategoryHandler,
     removeCategory: removeCategoryHandler,
+    setBudget: setBudgetHandler,
   };
   return (
     <BudgetContext.Provider value={budgetContext}>

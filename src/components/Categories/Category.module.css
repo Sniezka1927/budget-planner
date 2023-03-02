@@ -1,6 +1,41 @@
 .amount {
   color: rgb(9, 66, 9);
+  margin: 1rem 0.4rem;
+  padding: 0.25rem;
+  font-size: 100%;
+}
+.title {
+  margin: 1rem 0.4rem;
+  padding: 0.25rem;
+  font-size: 1.5rem;
 }
 .bin {
   cursor: pointer;
+  margin: 1rem;
+}
+
+.listItem {
+  width: 20%;
+}
+
+.listItemTitle {
+  width: 30%;
+}
+.listItemBin {
+  width: 10%;
+}
+
+@media (max-width: 768px) {
+  .listItem {
+    width: 100%;
+  }
+  .listItemTitle {
+    width: 100%;
+  }
+  .listItemBin {
+    width: 100%;
+  }
+  .bin {
+    margin: 0rem;
+  }
 }

@@ -1,45 +1,41 @@
 import React, { useContext } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import BudgetContext from "../../context/BudgetContext";
 import Expense from "./Expense";
 import styles from "./Expense.module.css";
+import ListGroup from "react-bootstrap/ListGroup";
 
 const Expenses = () => {
   const budgetContext = useContext(BudgetContext);
   return (
-    <ul className="list-group">
-      <li className="list-group-item d-flex justify-content-between align-items-center">
-        <Container fluid>
-          <Row>
-            <Col xs={1}>
-              <span className={styles.date}>Date</span>
-            </Col>
-            <Col xs={4}>
-              <span className={styles.title}>Transaction Title</span>
-            </Col>
-            <Col xs={3}>
-              <span className={styles.title}>Transaction Category</span>
-            </Col>
-            <Col xs={3}>
-              <span className={styles.amount}>Amount</span>
-            </Col>
-            <Col xs={1}></Col>
-          </Row>
-        </Container>
-      </li>
+    <Container fluid>
+      {window.innerWidth > 768 ? (
+        <ListGroup horizontal={"sm"} className="my-2">
+          <ListGroup.Item className={styles.listItem}>Date</ListGroup.Item>
+          <ListGroup.Item className={styles.listItemTitle}>
+            Transaction Title
+          </ListGroup.Item>
+          <ListGroup.Item className={styles.listItem}>Category</ListGroup.Item>
+          <ListGroup.Item className={styles.listItem}>Amount</ListGroup.Item>
+          <ListGroup.Item className={styles.listItemBin}></ListGroup.Item>
+        </ListGroup>
+      ) : null}
+
       {budgetContext.transactions.map((expenseItem) => {
         return (
-          <Expense
-            key={expenseItem.id}
-            id={expenseItem.id}
-            amount={expenseItem.amount}
-            title={expenseItem.title}
-            categoryTitle={expenseItem.categoryTitle}
-            date={expenseItem.date}
-          />
+          <ListGroup horizontal={"sm"} className="my-2">
+            <Expense
+              key={expenseItem.id}
+              id={expenseItem.id}
+              amount={expenseItem.amount}
+              title={expenseItem.title}
+              categoryTitle={expenseItem.categoryTitle}
+              date={expenseItem.date}
+            />
+          </ListGroup>
         );
       })}
-    </ul>
+    </Container>
   );
 };
 

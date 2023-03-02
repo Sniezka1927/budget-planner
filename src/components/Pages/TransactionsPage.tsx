@@ -27,7 +27,7 @@ const TransactionsPage = () => {
       </Row>
       <Row></Row>
       <Row>
-        <Title>All Transactions</Title>
+        <Title>Transactions</Title>
       </Row>
       <Row>
         <Expenses />

@@ -37,3 +37,29 @@
 .year {
   font-size: 75%;
 }
+
+.listItem {
+  width: 20%;
+}
+
+.listItemTitle {
+  width: 30%;
+}
+.listItemBin {
+  width: 10%;
+}
+
+@media (max-width: 768px) {
+  .listItem {
+    width: 100%;
+  }
+  .listItemTitle {
+    width: 100%;
+  }
+  .listItemBin {
+    width: 100%;
+  }
+  .bin {
+    margin: 0rem;
+  }
+}

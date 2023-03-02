@@ -1,45 +1,92 @@
-import { Col, Container, Row } from "react-bootstrap";
 import categoryProps from "../../Interfaces/categoryProps";
 import styles from "./Category.module.css";
 import { TiDelete as Icon } from "react-icons/ti";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import BudgetContext from "../../context/BudgetContext";
+import Button from "../UI/Button";
+import Input from "../UI/Input";
+import ListGroup from "react-bootstrap/ListGroup";
+import React from "react";
 const Category = (props: categoryProps) => {
   const budgetCtx = useContext(BudgetContext);
+
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+
+  const [categoryTitle, setCategoryTitle] = useState<string>(props.title);
+
+  const [amountDedicated, setAmountDedicated] = useState<Number>(
+    props.maxBudget
+  );
+
+  const titleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCategoryTitle(e.target.value);
+  };
+
+  const dedicatedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setAmountDedicated(Number(e.target.value));
+  };
 
   const removeHandler = () => {
     budgetCtx.removeCategory(props.id);
   };
+
+  const editHandler = () => {
+    setIsEditing(true);
+  };
+  const saveHandler = () => {
+    setIsEditing(false);
+  };
   return (
-    <li className="list-group-item d-flex justify-content-between align-items-center">
-      <Container fluid>
-        <Row>
-          <Col xs={4}>
-            <span className={styles.title}>{props.title}</span>
-          </Col>
-          <Col xs={2}>
-            <span className={styles.amount}>
-              ${JSON.stringify(props.totalSpend)}
-            </span>
-          </Col>
-          <Col xs={2}>
-            <span className={styles.amount}>
-              ${JSON.stringify(props.amountLeft)}
-            </span>
-          </Col>
-          <Col xs={3}>
-            <span className={styles.amount}>
-              ${JSON.stringify(props.maxBudget)}
-            </span>
-          </Col>
-          <Col xs={1}>
-            <span className={styles.bin} onClick={removeHandler}>
-              <Icon size={"1.5rem"} />
-            </span>
-          </Col>
-        </Row>
-      </Container>
-    </li>
+    <React.Fragment>
+      <ListGroup.Item className={styles.listItemTitle}>
+        {isEditing ? (
+          <Input
+            onChangeHandler={titleHandler}
+            type="text"
+            placeholder="write name of the category"
+            value={categoryTitle}
+          ></Input>
+        ) : (
+          <span className={styles.title}>{props.title}</span>
+        )}
+      </ListGroup.Item>
+      <ListGroup.Item className={styles.listItem}>
+        <span className={styles.amount}>
+          ${JSON.stringify(props.totalSpend)}
+        </span>
+      </ListGroup.Item>
+      <ListGroup.Item className={styles.listItem}>
+        <span className={styles.amount}>
+          ${JSON.stringify(props.amountLeft)}
+        </span>
+      </ListGroup.Item>
+      <ListGroup.Item className={styles.listItem}>
+        {isEditing ? (
+          <Input
+            onChangeHandler={dedicatedHandler}
+            type="number"
+            placeholder="write amount dedicated to this category"
+            value={amountDedicated}
+          ></Input>
+        ) : (
+          <span className={styles.amount}>
+            ${JSON.stringify(props.maxBudget)}
+          </span>
+        )}
+      </ListGroup.Item>
+      <ListGroup.Item className={styles.listItem}>
+        {!isEditing ? (
+          <Button onClickHandler={editHandler}>Edit</Button>
+        ) : (
+          <Button onClickHandler={saveHandler}>Save</Button>
+        )}
+      </ListGroup.Item>
+      <ListGroup.Item className={styles.listItemBin}>
+        <div className={styles.bin} onClick={removeHandler}>
+          <Icon size={"1.5rem"} />
+        </div>
+      </ListGroup.Item>
+    </React.Fragment>
   );
 };
 

@@ -5,7 +5,7 @@ const Spent = () => {
   const budgetContext = useContext(BudgetContext);
   return (
     <div className={styles.container}>
-      <span>Spent so far: {JSON.stringify(budgetContext.spent)}$</span>
+      <span>Spent: {JSON.stringify(budgetContext.spent)}$</span>
     </div>
   );
 };

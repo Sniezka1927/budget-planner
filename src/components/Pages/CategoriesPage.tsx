@@ -11,35 +11,34 @@ const CategoriesPage = () => {
     setIsVisible(value);
   };
   return (
-    <React.Fragment>
+    <Container>
       {isVisible ? <NewCategory toggle={toggleVisibility} /> : null}
-      <Container>
-        <Row>
-          <Button
-            onClickHandler={() => {
-              setIsVisible((prevState: boolean) => !prevState);
-            }}
-          >
-            Add new category
-          </Button>
-        </Row>
-        <Row>
-          <Title>Categories:</Title>
-        </Row>
-        <Row>
-          <Col>
-            <Categories />
-          </Col>
-        </Row>
-        <Row>
-          <>
-            The Categories page would allow the user to manage their expense
-            categories. The page would display a list of categories, with the
-            ability to add, edit, and delete categories.
-          </>
-        </Row>
-      </Container>
-    </React.Fragment>
+
+      <Row>
+        <Button
+          onClickHandler={() => {
+            setIsVisible((prevState: boolean) => !prevState);
+          }}
+        >
+          Add new category
+        </Button>
+      </Row>
+      <Row>
+        <Title>Categories:</Title>
+      </Row>
+      <Row>
+        <Col>
+          <Categories />
+        </Col>
+      </Row>
+      <Row>
+        <>
+          The Categories page would allow the user to manage their expense
+          categories. The page would display a list of categories, with the
+          ability to add, edit, and delete categories.
+        </>
+      </Row>
+    </Container>
   );
 };
 
