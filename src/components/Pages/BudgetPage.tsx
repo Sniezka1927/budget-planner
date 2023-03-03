@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import Title from "../UI/Title";
@@ -18,6 +18,7 @@ import { Bar } from "react-chartjs-2";
 import BudgetContext from "../../context/BudgetContext";
 import chartData from "../../Interfaces/chartData";
 import Category from "../../Interfaces/Category";
+import Spinner from "react-bootstrap/Spinner";
 
 ChartJS.register(
   CategoryScale,
@@ -31,6 +32,7 @@ ChartJS.register(
 const BudgetPage: React.FC = () => {
   const budgetCtx = useContext(BudgetContext);
   const [budget, setBudget] = useState<Number>(budgetCtx.budget);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const options = {
     responsive: true,
@@ -59,6 +61,7 @@ const BudgetPage: React.FC = () => {
 
   useEffect(() => {
     const labels = budgetCtx.categories.map((cat) => cat.title);
+    setIsLoading(true);
     const chartData = {
       labels,
       datasets: [
@@ -69,6 +72,7 @@ const BudgetPage: React.FC = () => {
         },
       ],
     };
+    setIsLoading(false);
     setData(chartData);
   }, [budgetCtx]);
 
@@ -100,7 +104,21 @@ const BudgetPage: React.FC = () => {
         <Title>Expenses Chart</Title>
       </Row>
       <Row>
-        <Bar options={options} data={data} />
+        {isLoading ? (
+          <Col>
+            <Spinner
+              animation="border"
+              style={{
+                color: "#9f146e",
+                width: "4rem",
+                height: "4rem",
+                marginTop: "3rem",
+              }}
+            />
+          </Col>
+        ) : (
+          <Bar options={options} data={data} />
+        )}
       </Row>
     </Container>
   );

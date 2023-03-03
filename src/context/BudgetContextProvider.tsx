@@ -26,7 +26,7 @@ const defaultBudgetState: defaultState = {
     {
       id: "3",
       amount: 50,
-      date: new Date(2023, 12, 12),
+      date: new Date(2023, 0, 1),
       categoryTitle: "Needs",
       title: "New PC",
     },

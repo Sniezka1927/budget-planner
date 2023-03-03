@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { Container } from "react-bootstrap";
-import Col from "react-bootstrap/esm/Col";
-import Row from "react-bootstrap/esm/Row";
+import { Container, Col, Row } from "react-bootstrap";
+// import Col from "react-bootstrap/esm/Col";
+// import Row from "react-bootstrap/esm/Row";
 import { useNavigate } from "react-router-dom";
 import BudgetContext from "../../context/BudgetContext";
 import Budget from "../Budget/Budget";
