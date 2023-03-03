@@ -34,6 +34,7 @@ const Category = (props: categoryProps) => {
     setIsEditing(true);
   };
   const saveHandler = () => {
+    budgetCtx.updateCategory(props.id, categoryTitle, amountDedicated);
     setIsEditing(false);
   };
   return (

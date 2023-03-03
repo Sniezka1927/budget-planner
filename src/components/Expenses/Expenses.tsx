@@ -1,12 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Container } from "react-bootstrap";
-import BudgetContext from "../../context/BudgetContext";
 import Expense from "./Expense";
 import styles from "./Expense.module.css";
 import ListGroup from "react-bootstrap/ListGroup";
+import expensesProps from "../../Interfaces/expensesProps";
 
-const Expenses = () => {
-  const budgetContext = useContext(BudgetContext);
+const Expenses = (props: expensesProps) => {
   return (
     <Container fluid>
       {window.innerWidth > 768 ? (
@@ -21,7 +20,7 @@ const Expenses = () => {
         </ListGroup>
       ) : null}
 
-      {budgetContext.transactions.map((expenseItem) => {
+      {props.transactions.map((expenseItem) => {
         return (
           <ListGroup horizontal={"sm"} className="my-2">
             <Expense

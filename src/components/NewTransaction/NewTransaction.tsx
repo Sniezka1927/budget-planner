@@ -41,9 +41,9 @@ const NewTransaction = (props: newTransactionProps) => {
     e.preventDefault();
     if (date === "" && title.length < 1 && amount === 0) {
       setIsCorrect(false);
-      setTimeout(() => {
-        setIsCorrect(true);
-      }, 3000);
+      // setTimeout(() => {
+      //   setIsCorrect(true);
+      // }, 3000);
     } else {
       setIsCorrect(true);
       budgetCtx.addTransaction(new Date(date), title, categoryTitle, amount);

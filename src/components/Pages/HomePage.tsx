@@ -1,7 +1,9 @@
+import { useContext } from "react";
 import { Container } from "react-bootstrap";
 import Col from "react-bootstrap/esm/Col";
 import Row from "react-bootstrap/esm/Row";
 import { useNavigate } from "react-router-dom";
+import BudgetContext from "../../context/BudgetContext";
 import Budget from "../Budget/Budget";
 import Remaining from "../Budget/Remaining";
 import Spent from "../Budget/Spent";
@@ -14,11 +16,11 @@ const HomePage = () => {
   const onAdd = () => {
     navigate("/transactions");
   };
+
+  const budgetCtx = useContext(BudgetContext);
+
   return (
     <Container>
-      {/* <Row>
-        <Title>My Budget Planner</Title>
-      </Row> */}
       <Row>
         <Col>
           <Budget />
@@ -35,9 +37,7 @@ const HomePage = () => {
       </Row>
       <Row>
         <Col>
-          <div style={{ height: "50vh", overflowY: "scroll" }}>
-            <Expenses />
-          </div>
+          <Expenses transactions={budgetCtx.transactions.slice(0, 5)} />
         </Col>
       </Row>
       <Row>
@@ -45,17 +45,6 @@ const HomePage = () => {
           <Button onClickHandler={onAdd}>Add new transaction</Button>
         </Col>
       </Row>
-      {/* <Row>
-        <Col>
-          <>
-            <>My Budget Planner</>
-            <>Budget:</>
-            The homepage would be a simple dashboard displaying the user's
-            current expenses, income, and budget progress. It would also have a
-            button to add a new transaction.
-          </>
-        </Col>
-      </Row> */}
     </Container>
   );
 };

@@ -17,6 +17,7 @@ interface BudgetContextType {
   addCategory: (title: string, maxBudget: Number) => void;
   removeCategory: (id: string) => void;
   setBudget: (budget: Number) => void;
+  updateCategory: (id: string, title: string, amountDedicated: Number) => void;
 }
 
 export default BudgetContextType;

@@ -1,5 +1,6 @@
 import selectProps from "../../Interfaces/selectProps";
 import styles from "./Select.module.css";
+import React from "react";
 const Select = (props: selectProps) => {
   return (
     <select className={styles.select} onChange={props.onChangeHandler}>
@@ -8,7 +9,7 @@ const Select = (props: selectProps) => {
       </option>
       {props.options.map((option) => {
         return (
-          <option key={option.id} value={option.title}>
+          <option key={JSON.stringify(option.id)} value={option.title}>
             {option.title}
           </option>
         );

@@ -78,12 +78,6 @@ const defaultBudgetState: defaultState = {
   budget: 2000,
   spent: 1150,
   remaining: 850,
-  /*
-  addTransaction: () => {},
-  removeTransaction: () => {},
-  addCategory: () => {},
-  removeCategory: () => {},
-  */
 };
 
 const budgetReducer = (
@@ -175,6 +169,19 @@ const budgetReducer = (
       spent: state.spent,
       remaining: action.budget - state.spent,
     };
+  } else if (action.type === "ADJUST-CATEGORY") {
+    const selectedCategory = state.categories.find(
+      (cat: Category) => cat.id === action.id
+    );
+    selectedCategory.title = action.title;
+    selectedCategory.maxBudget = action.amountDedicated;
+    return {
+      transactions: state.transactions,
+      categories: state.categories,
+      budget: state.budget,
+      spent: state.spent,
+      remaining: action.budget - state.spent,
+    };
   }
 
   // if any block catched return default values to prevent errors
@@ -236,6 +243,18 @@ const BudgetContextProvider = (props: budgetProvider) => {
     });
   };
 
+  const updateCategoryHandler = (
+    id: string,
+    title: string,
+    amountDedicated: Number
+  ) => {
+    dispatchBudgetAction({
+      type: "ADJUST-CATEGORY",
+      title: title,
+      amountDedicated: amountDedicated,
+      id: id,
+    });
+  };
   const budgetContext: BudgetContextType = {
     transactions: budgetState.transactions,
     categories: budgetState.categories,
@@ -247,6 +266,7 @@ const BudgetContextProvider = (props: budgetProvider) => {
     addCategory: addCategoryHandler,
     removeCategory: removeCategoryHandler,
     setBudget: setBudgetHandler,
+    updateCategory: updateCategoryHandler,
   };
   return (
     <BudgetContext.Provider value={budgetContext}>

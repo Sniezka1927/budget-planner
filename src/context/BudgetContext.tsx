@@ -12,6 +12,7 @@ const BudgetContext = createContext<BudgetContextType>({
   addCategory: () => {},
   removeCategory: () => {},
   setBudget: () => {},
+  updateCategory: () => {},
 });
 
 export default BudgetContext;
