@@ -4,4 +4,7 @@
   border: 3px solid #a83521;
   border-radius: 30px;
   margin: 1.5rem;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
