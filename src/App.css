@@ -1,5 +1,11 @@
+@font-face {
+  font-family: roboto;
+  src: url("./assets/Roboto-Regular.ttf");
+}
+
 * {
   text-align: center;
+  font-family: roboto;
 }
 
 /* ===== Scrollbar CSS ===== */
