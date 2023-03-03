@@ -75,9 +75,9 @@ const defaultBudgetState: defaultState = {
       amountLeft: 350,
     },
   ],
-  budget: 2000,
+  budget: 10000,
   spent: 1150,
-  remaining: 850,
+  remaining: 8850,
 };
 
 const budgetReducer = (

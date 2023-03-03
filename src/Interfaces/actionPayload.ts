@@ -3,7 +3,9 @@ interface actionPayload {
     | "ADD-TRANSACTION"
     | "REMOVE-TRANSACTION"
     | "ADD-CATEGORY"
-    | "REMOVE-CATEGORY";
+    | "REMOVE-CATEGORY"
+    | "SET-BUDGET"
+    | "ADJUST-CATEGORY";
   id?: string;
   date?: Date;
   title?: string;
