@@ -22,6 +22,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-_backend/.env
 todo.txt
-_backend
+_backend/
+build/

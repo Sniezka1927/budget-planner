@@ -7,10 +7,13 @@ import FloatingContainer from "../UI/FloatingContainer";
 import Input from "../UI/Input";
 import Label from "../UI/Label";
 import Title from "../UI/Title";
+import Alert from "react-bootstrap/Alert";
 
 const NewCategory = (props: newCategoryProps) => {
   const [title, setTitle] = useState<string>("");
   const [dedicatedAmount, setDedicatedAmount] = useState<Number>(0);
+
+  const [isCorrect, setIsCorrect] = useState<boolean>(true);
 
   const titleHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -25,11 +28,13 @@ const NewCategory = (props: newCategoryProps) => {
     props.toggle(false);
   };
 
-  const addCategory = () => {
+  const addCategory = (e: React.SyntheticEvent) => {
+    e.preventDefault();
     if (title.length === 0 && dedicatedAmount === 0) {
-      alert("not ok");
+      setIsCorrect(false);
       return;
     } else {
+      setIsCorrect(true);
       budgetCtx.addCategory(title, dedicatedAmount);
       props.toggle(false);
     }
@@ -41,7 +46,12 @@ const NewCategory = (props: newCategoryProps) => {
   return (
     <FloatingContainer onBackdrop={onBackdrop}>
       <Title>Add new Category</Title>
-      <form style={{ textAlign: "left" }}>
+      {!isCorrect ? (
+        <Alert variant={"danger"}>
+          Looks like you didn't fill all fields in the category!
+        </Alert>
+      ) : null}
+      <form style={{ textAlign: "left" }} onSubmit={addCategory}>
         <Label>Category Title:</Label>
         <br />
         <Input
