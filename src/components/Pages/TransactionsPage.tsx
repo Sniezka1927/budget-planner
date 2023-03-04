@@ -10,6 +10,7 @@ import BudgetContext from "../../context/BudgetContext";
 import Transaction from "../../Interfaces/Transaction";
 import months from "../../Interfaces/months";
 import ListGroup from "react-bootstrap/ListGroup";
+import years from "../../Interfaces/years";
 
 const monthsData = [
   { id: 0, title: "January" },
@@ -42,7 +43,7 @@ const TransactionsPage = () => {
     monthsData[2].title
   );
 
-  const [availableYears, setAvailableYears] = useState<any>([]);
+  const [availableYears, setAvailableYears] = useState<Array<years>>([]); //
   const [selectedYear, setSelectedYear] = useState<string>(
     JSON.stringify(new Date().getFullYear())
   );
@@ -60,9 +61,10 @@ const TransactionsPage = () => {
     );
     const uniqueYears = [...new Set(years)];
     const yearsRange = uniqueYears.map((y, i) => {
-      return { id: i, title: y };
+      return { id: i, title: JSON.stringify(y) };
     });
 
+    console.log(yearsRange);
     if (yearsRange.length > 0) setAvailableYears(yearsRange);
     else
       setAvailableYears([

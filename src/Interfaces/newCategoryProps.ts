@@ -1,4 +1,4 @@
 interface newCategoryProps {
-  toggle: (value: boolean) => {} | any;
+  toggle: (value: boolean) => void;
 }
 export default newCategoryProps;

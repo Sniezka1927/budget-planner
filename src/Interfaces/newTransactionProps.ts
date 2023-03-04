@@ -1,4 +1,4 @@
 interface newTransactionProps {
-  toggle: (value: boolean) => {} | any;
+  toggle: (value: boolean) => void;
 }
 export default newTransactionProps;
