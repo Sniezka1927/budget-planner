@@ -22,7 +22,7 @@ const Expenses = (props: expensesProps) => {
 
       {props.transactions.map((expenseItem) => {
         return (
-          <ListGroup horizontal={"sm"} className="my-2">
+          <ListGroup horizontal={"sm"} className="my-2" key={expenseItem.id}>
             <Expense
               key={expenseItem.id}
               id={expenseItem.id}

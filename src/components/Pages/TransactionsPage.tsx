@@ -39,7 +39,7 @@ const TransactionsPage = () => {
   );
 
   const [selectedMonth, setSelectedMonth] = useState<string>(
-    monthsData[0].title
+    monthsData[2].title
   );
 
   const [availableYears, setAvailableYears] = useState<any>([]);
@@ -58,17 +58,17 @@ const TransactionsPage = () => {
     const years = budgetCtx.transactions.map((trans: Transaction) =>
       new Date(trans.date).getFullYear()
     );
-
     const uniqueYears = [...new Set(years)];
     const yearsRange = uniqueYears.map((y, i) => {
       return { id: i, title: y };
     });
+
     if (yearsRange.length > 0) setAvailableYears(yearsRange);
     else
       setAvailableYears([
         { id: 0, title: JSON.stringify(new Date().getFullYear()) },
       ]);
-  }, [budgetCtx.transactions]);
+  }, [budgetCtx.transactions, selectedMonth]);
 
   useEffect(() => {
     const selectedMonthData = monthsData.filter(
