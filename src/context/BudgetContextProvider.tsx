@@ -4,7 +4,7 @@ import BudgetContext from "./BudgetContext";
 import { useReducer } from "react";
 import defaultState from "../Interfaces/defaultState";
 import Category from "../Interfaces/Category";
-// import actionPayload from "../Interfaces/actionPayload";
+import actionPayload from "../Interfaces/actionPayload";
 import Transaction from "../Interfaces/Transaction";
 
 const defaultBudgetState: defaultState = {
@@ -79,6 +79,25 @@ const defaultBudgetState: defaultState = {
   spent: 1150,
   remaining: 8850,
 };
+
+enum ActionKind {
+  AddTransaction = "ADD-TRANSACTION",
+  RemoveTransaction = "REMOVE-TRANSACTION",
+  AddCategory = "ADD-CATEGORY",
+  RemoveCategory = "REMOVE-CATEGORY",
+  SetBudget = "SET-BUDGET",
+  AdjustCategory = "ADJUST-CATEGORY",
+}
+
+type Action = {
+  type: ActionKind;
+  payload: actionPayload;
+};
+
+// interface actionPaylod {
+//   type: ActionKind;
+//   payload: actionPayload;
+// }
 
 const budgetReducer = (
   state: any /*defaultState*/,

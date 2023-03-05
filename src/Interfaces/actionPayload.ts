@@ -1,11 +1,11 @@
 interface actionPayload {
-  type:
-    | "ADD-TRANSACTION"
-    | "REMOVE-TRANSACTION"
-    | "ADD-CATEGORY"
-    | "REMOVE-CATEGORY"
-    | "SET-BUDGET"
-    | "ADJUST-CATEGORY";
+  // type:
+  //   | "ADD-TRANSACTION"
+  //   | "REMOVE-TRANSACTION"
+  //   | "ADD-CATEGORY"
+  //   | "REMOVE-CATEGORY"
+  //   | "SET-BUDGET"
+  //   | "ADJUST-CATEGORY";
   id?: string;
   date?: Date;
   title?: string;
