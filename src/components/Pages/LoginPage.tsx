@@ -5,7 +5,6 @@ import { useState, useContext } from "react";
 import Button from "../UI/Button";
 import AuthContext from "../../context/auth-context";
 import { useNavigate } from "react-router-dom";
-
 const LoginPage = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassowrd] = useState<string>("");
@@ -22,12 +21,27 @@ const LoginPage = () => {
 
   const submitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    alert(`${email} -  ${password}`);
+    // fetch goes here
     authCtx.signIn();
     navigate("/home");
   };
+
+  if (authCtx.isLogged) {
+    navigate("/home");
+  }
   return (
     <Container>
+      <Row>
+        <h2
+          style={{
+            margin: "1rem, 0rem",
+            fontWeight: "bolder",
+            color: "#9f146e",
+          }}
+        >
+          Login to your account
+        </h2>
+      </Row>
       <Row>
         <Col>
           <form onSubmit={submitHandler}>
@@ -40,7 +54,7 @@ const LoginPage = () => {
               onChangeHandler={emailHandler}
             ></Input>
             <br />
-            <Label>Passowrd</Label>
+            <Label>password</Label>
             <br />
             <Input
               value={password}

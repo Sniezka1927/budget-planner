@@ -26,6 +26,7 @@ const monthsData = [
   { id: 10, title: "November" },
   { id: 11, title: "December" },
 ];
+
 const TransactionsPage = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 

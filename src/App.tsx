@@ -14,20 +14,21 @@ import MissingPage from "./components/Pages/MissingPage";
 import LoginPage from "./components/Pages/LoginPage";
 import AuthContextProvider from "./context/AuthProvider";
 import AuthContext from "./context/auth-context";
+import SettingsPage from "./components/Pages/SettingsPage";
 function App() {
   const authCtx = useContext(AuthContext);
-  console.log(authCtx.isLogged);
   return (
     <AuthContextProvider>
       <BudgetContextProvider>
         <Router>
           {authCtx.isLogged ? <Navigation /> : null}
           <Routes>
+            <Route path="/" element={<LoginPage />}></Route>
             <Route path="/home" element={<HomePage />}></Route>
             <Route path="/transactions" element={<TransactionsPage />}></Route>
             <Route path="/categories" element={<CategoriesPage />}></Route>
             <Route path="/budget" element={<BudgetPage />}></Route>
-            <Route path="/" element={<LoginPage />}></Route>
+            <Route path="/settings" element={<SettingsPage />}></Route>
             <Route path="*" element={<MissingPage />}></Route>
           </Routes>
         </Router>
