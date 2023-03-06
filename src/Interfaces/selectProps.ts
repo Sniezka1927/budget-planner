@@ -7,6 +7,8 @@ interface selectProps {
   options: Array<Category> | Array<months> | Array<years>;
   placeholder: string;
   onChangeHandler: ChangeEventHandler<HTMLSelectElement>;
+  value?: string;
+  defaultValue?: string;
 }
 
 export default selectProps;

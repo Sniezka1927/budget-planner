@@ -3,7 +3,11 @@ import styles from "./Select.module.css";
 import React from "react";
 const Select = (props: selectProps) => {
   return (
-    <select className={styles.select} onChange={props.onChangeHandler}>
+    <select
+      className={styles.select}
+      onChange={props.onChangeHandler}
+      value={props.value}
+    >
       <option value={"choose one"} disabled>
         Choose one
       </option>

@@ -15,7 +15,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import BudgetContext from "../../context/BudgetContext";
+import BudgetContext from "../../context/budget-context";
 import chartData from "../../Interfaces/chartData";
 import Category from "../../Interfaces/Category";
 import Spinner from "react-bootstrap/Spinner";

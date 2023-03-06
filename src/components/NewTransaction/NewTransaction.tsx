@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Col, Row } from "react-bootstrap";
-import BudgetContext from "../../context/BudgetContext";
+import BudgetContext from "../../context/budget-context";
 import newTransactionProps from "../../Interfaces/newTransactionProps";
 import Button from "../UI/Button";
 import FloatingContainer from "../UI/FloatingContainer";

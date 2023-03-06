@@ -1,6 +1,6 @@
 import Category from "./Category";
 import React, { useContext } from "react";
-import BudgetContext from "../../context/BudgetContext";
+import BudgetContext from "../../context/budget-context";
 import ListGroup from "react-bootstrap/ListGroup";
 import styles from "./Category.module.css";
 const Categories = () => {
@@ -27,9 +27,8 @@ const Categories = () => {
       ) : null}
       {budgetContext.categories.map((categoryItem) => {
         return (
-          <ListGroup horizontal={"sm"} className="my-2">
+          <ListGroup horizontal={"sm"} className="my-2" key={categoryItem.id}>
             <Category
-              key={categoryItem.id}
               id={categoryItem.id}
               title={categoryItem.title}
               maxBudget={categoryItem.maxBudget}

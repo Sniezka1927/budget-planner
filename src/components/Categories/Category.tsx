@@ -2,7 +2,7 @@ import categoryProps from "../../Interfaces/categoryProps";
 import styles from "./Category.module.css";
 import { TiDelete as Icon } from "react-icons/ti";
 import { useContext, useState } from "react";
-import BudgetContext from "../../context/BudgetContext";
+import BudgetContext from "../../context/budget-context";
 import Button from "../UI/Button";
 import Input from "../UI/Input";
 import ListGroup from "react-bootstrap/ListGroup";

@@ -3,7 +3,7 @@ import { Container, Col, Row } from "react-bootstrap";
 // import Col from "react-bootstrap/esm/Col";
 // import Row from "react-bootstrap/esm/Row";
 import { useNavigate } from "react-router-dom";
-import BudgetContext from "../../context/BudgetContext";
+import BudgetContext from "../../context/budget-context";
 import Budget from "../Budget/Budget";
 import Remaining from "../Budget/Remaining";
 import Spent from "../Budget/Spent";

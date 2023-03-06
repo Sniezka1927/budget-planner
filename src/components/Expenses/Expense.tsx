@@ -1,7 +1,7 @@
 import expenseProps from "../../Interfaces/expenseProps";
 import styles from "./Expense.module.css";
 import { TiDelete as Icon } from "react-icons/ti";
-import BudgetContext from "../../context/BudgetContext";
+import BudgetContext from "../../context/budget-context";
 import { useContext } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import React from "react";
