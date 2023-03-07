@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import "./App.css";
-import Navigation from "./components/Navigation/Navigation";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
@@ -13,15 +12,12 @@ import BudgetContextProvider from "./context/BudgetContextProvider";
 import MissingPage from "./components/Pages/MissingPage";
 import LoginPage from "./components/Pages/LoginPage";
 import AuthContextProvider from "./context/AuthProvider";
-import AuthContext from "./context/auth-context";
 import SettingsPage from "./components/Pages/SettingsPage";
 function App() {
-  const authCtx = useContext(AuthContext);
   return (
     <AuthContextProvider>
       <BudgetContextProvider>
         <Router>
-          {authCtx.isLogged ? <Navigation /> : null}
           <Routes>
             <Route path="/" element={<LoginPage />}></Route>
             <Route path="/home" element={<HomePage />}></Route>

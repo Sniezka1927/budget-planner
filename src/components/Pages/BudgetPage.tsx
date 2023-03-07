@@ -19,6 +19,7 @@ import BudgetContext from "../../context/budget-context";
 import chartData from "../../Interfaces/chartData";
 import Category from "../../Interfaces/Category";
 import Spinner from "react-bootstrap/Spinner";
+import Navigation from "../Navigation/Navigation";
 
 ChartJS.register(
   CategoryScale,
@@ -84,43 +85,46 @@ const BudgetPage: React.FC = () => {
   };
 
   return (
-    <Container>
-      <Row>
-        <Title>Your Income</Title>
-      </Row>
-      <Row>
-        <Input
-          value={budget}
-          type="number"
-          onChangeHandler={budgetHandler}
-          placeholder={"write your income"}
-        ></Input>
-      </Row>
-      <Row>
-        <Button onClickHandler={onSave}>Save</Button>
-      </Row>
+    <React.Fragment>
+      <Navigation />
+      <Container>
+        <Row>
+          <Title>Your Income</Title>
+        </Row>
+        <Row>
+          <Input
+            value={budget}
+            type="number"
+            onChangeHandler={budgetHandler}
+            placeholder={"write your income"}
+          ></Input>
+        </Row>
+        <Row>
+          <Button onClickHandler={onSave}>Save</Button>
+        </Row>
 
-      <Row>
-        <Title>Expenses Chart</Title>
-      </Row>
-      <Row>
-        {isLoading ? (
-          <Col>
-            <Spinner
-              animation="border"
-              style={{
-                color: "#9f146e",
-                width: "4rem",
-                height: "4rem",
-                marginTop: "3rem",
-              }}
-            />
-          </Col>
-        ) : (
-          <Bar options={options} data={data} />
-        )}
-      </Row>
-    </Container>
+        <Row>
+          <Title>Expenses Chart</Title>
+        </Row>
+        <Row>
+          {isLoading ? (
+            <Col>
+              <Spinner
+                animation="border"
+                style={{
+                  color: "#9f146e",
+                  width: "4rem",
+                  height: "4rem",
+                  marginTop: "3rem",
+                }}
+              />
+            </Col>
+          ) : (
+            <Bar options={options} data={data} />
+          )}
+        </Row>
+      </Container>
+    </React.Fragment>
   );
 };
 

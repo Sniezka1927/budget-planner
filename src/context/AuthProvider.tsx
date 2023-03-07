@@ -5,10 +5,10 @@ import AuthContext from "./auth-context";
 
 interface defaultState {
   isLogged: boolean;
-  user: Object;
+  user: object;
 }
 const defaultAuthState: defaultState = {
-  isLogged: true,
+  isLogged: false,
   user: {},
 };
 

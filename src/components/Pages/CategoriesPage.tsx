@@ -4,6 +4,7 @@ import Button from "../UI/Button";
 import Title from "../UI/Title";
 import React, { useState } from "react";
 import NewCategory from "../Categories/NewCategory";
+import Navigation from "../Navigation/Navigation";
 const CategoriesPage = () => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
@@ -11,27 +12,31 @@ const CategoriesPage = () => {
     setIsVisible(value);
   };
   return (
-    <Container>
-      {isVisible ? <NewCategory toggle={toggleVisibility} /> : null}
-      <Row>
-        <Title>Categories:</Title>
-      </Row>
-      <Row>
-        <Button
-          onClickHandler={() => {
-            setIsVisible((prevState: boolean) => !prevState);
-          }}
-        >
-          Add new category
-        </Button>
-      </Row>
+    <React.Fragment>
+      <Navigation />
 
-      <Row>
-        <Col>
-          <Categories />
-        </Col>
-      </Row>
-    </Container>
+      <Container>
+        {isVisible ? <NewCategory toggle={toggleVisibility} /> : null}
+        <Row>
+          <Title>Categories:</Title>
+        </Row>
+        <Row>
+          <Button
+            onClickHandler={() => {
+              setIsVisible((prevState: boolean) => !prevState);
+            }}
+          >
+            Add new category
+          </Button>
+        </Row>
+
+        <Row>
+          <Col>
+            <Categories />
+          </Col>
+        </Row>
+      </Container>
+    </React.Fragment>
   );
 };
 

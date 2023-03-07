@@ -3,7 +3,7 @@ import AuthContextType from "../Interfaces/AuthContextType";
 // import BudgetContextType from "../Interfaces/budgetContextType";
 
 const AuthContext = createContext<AuthContextType>({
-  isLogged: true,
+  isLogged: false,
   user: {},
   signIn: () => {},
   signOut: () => {},

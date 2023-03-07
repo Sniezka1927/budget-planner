@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import NewTransaction from "../NewTransaction/NewTransaction";
 import Button from "../UI/Button";
@@ -11,6 +11,7 @@ import Transaction from "../../Interfaces/Transaction";
 import months from "../../Interfaces/months";
 import ListGroup from "react-bootstrap/ListGroup";
 import years from "../../Interfaces/years";
+import Navigation from "../Navigation/Navigation";
 
 const monthsData = [
   { id: 0, title: "January" },
@@ -98,50 +99,53 @@ const TransactionsPage = () => {
   }, [selectedMonth, selectedYear, budgetCtx.transactions]);
 
   return (
-    <Container>
-      {isVisible ? <NewTransaction toggle={toggleVisibility} /> : null}
-      <Row>
-        <Title>Transactions</Title>
-      </Row>
-      <Row>
-        <Button
-          onClickHandler={() => {
-            setIsVisible((prevState: boolean) => !prevState);
-          }}
-        >
-          Add new transaction
-        </Button>
-      </Row>
-      <Row>
-        <Title>Filter by:</Title>
-        <ListGroup horizontal={"sm"}>
-          <ListGroup.Item style={{ borderColor: "transparent" }}>
-            <Label>Month</Label>
-            <br />
-            <Select
-              options={monthsData}
-              placeholder={"filter by month"}
-              onChangeHandler={monthHandler}
-              value={selectedMonth}
-            ></Select>
-          </ListGroup.Item>
-          <ListGroup.Item style={{ borderColor: "transparent" }}>
-            <Label>Year</Label>
-            <br />
-            <Select
-              options={availableYears}
-              placeholder={"filter by year"}
-              value={selectedYear}
-              onChangeHandler={yearHandler}
-            ></Select>
-          </ListGroup.Item>
-        </ListGroup>
-        <ListGroup horizontal={"sm"}></ListGroup>
-      </Row>
-      <Row>
-        <Expenses transactions={tranasctions} />
-      </Row>
-    </Container>
+    <React.Fragment>
+      <Navigation />
+      <Container>
+        {isVisible ? <NewTransaction toggle={toggleVisibility} /> : null}
+        <Row>
+          <Title>Transactions</Title>
+        </Row>
+        <Row>
+          <Button
+            onClickHandler={() => {
+              setIsVisible((prevState: boolean) => !prevState);
+            }}
+          >
+            Add new transaction
+          </Button>
+        </Row>
+        <Row>
+          <Title>Filter by:</Title>
+          <ListGroup horizontal={"sm"}>
+            <ListGroup.Item style={{ borderColor: "transparent" }}>
+              <Label>Month</Label>
+              <br />
+              <Select
+                options={monthsData}
+                placeholder={"filter by month"}
+                onChangeHandler={monthHandler}
+                value={selectedMonth}
+              ></Select>
+            </ListGroup.Item>
+            <ListGroup.Item style={{ borderColor: "transparent" }}>
+              <Label>Year</Label>
+              <br />
+              <Select
+                options={availableYears}
+                placeholder={"filter by year"}
+                value={selectedYear}
+                onChangeHandler={yearHandler}
+              ></Select>
+            </ListGroup.Item>
+          </ListGroup>
+          <ListGroup horizontal={"sm"}></ListGroup>
+        </Row>
+        <Row>
+          <Expenses transactions={tranasctions} />
+        </Row>
+      </Container>
+    </React.Fragment>
   );
 };
 
