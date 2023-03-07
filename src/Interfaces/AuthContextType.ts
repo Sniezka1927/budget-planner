@@ -1,6 +1,6 @@
 interface AuthContextType {
   isLogged: boolean;
-  user: Object;
+  user: object;
   signIn: () => void;
   signOut: () => void;
   setUser: () => void;

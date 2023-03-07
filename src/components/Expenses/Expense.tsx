@@ -31,7 +31,7 @@ const Expense = (props: expenseProps) => {
         <span className={styles.title}>{props.categoryTitle}</span>
       </ListGroup.Item>
       <ListGroup.Item className={styles.listItem}>
-        <span className={styles.amount}>${JSON.stringify(props.amount)}</span>
+        <span className={styles.amount}>${String(props.amount)}</span>
       </ListGroup.Item>
 
       <ListGroup.Item className={styles.listItemBin}>
