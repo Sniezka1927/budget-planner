@@ -3,9 +3,9 @@ import Category from "./Category";
 interface defaultState {
   transactions: Array<Transaction>;
   categories: Array<Category>;
-  budget: Number;
-  spent: Number;
-  remaining: Number;
+  budget: number;
+  spent: number;
+  remaining: number;
 }
 
 export default defaultState;

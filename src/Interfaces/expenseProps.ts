@@ -1,6 +1,6 @@
 interface expenseProps {
   id: string;
-  amount: Number;
+  amount: number;
   date: Date;
   title: string;
   categoryTitle: string;

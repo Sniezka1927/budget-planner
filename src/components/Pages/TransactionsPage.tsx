@@ -93,7 +93,7 @@ const TransactionsPage = () => {
     );
     const matchingTransactions = matchingTransactionsByMonth.filter(
       (trans: Transaction) =>
-        JSON.stringify(new Date(trans.date).getFullYear()) === selectedYear
+        String(new Date(trans.date).getFullYear()) === selectedYear
     );
     setTransactions(matchingTransactions);
   }, [selectedMonth, selectedYear, budgetCtx.transactions]);

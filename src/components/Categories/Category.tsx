@@ -14,7 +14,7 @@ const Category = (props: categoryProps) => {
 
   const [categoryTitle, setCategoryTitle] = useState<string>(props.title);
 
-  const [amountDedicated, setAmountDedicated] = useState<Number>(
+  const [amountDedicated, setAmountDedicated] = useState<number>(
     props.maxBudget
   );
 
@@ -52,14 +52,10 @@ const Category = (props: categoryProps) => {
         )}
       </ListGroup.Item>
       <ListGroup.Item className={styles.listItem}>
-        <span className={styles.amount}>
-          ${JSON.stringify(props.totalSpend)}
-        </span>
+        <span className={styles.amount}>${String(props.totalSpend)}</span>
       </ListGroup.Item>
       <ListGroup.Item className={styles.listItem}>
-        <span className={styles.amount}>
-          ${JSON.stringify(props.amountLeft)}
-        </span>
+        <span className={styles.amount}>${String(props.amountLeft)}</span>
       </ListGroup.Item>
       <ListGroup.Item className={styles.listItem}>
         {isEditing ? (
@@ -70,9 +66,7 @@ const Category = (props: categoryProps) => {
             value={amountDedicated}
           ></Input>
         ) : (
-          <span className={styles.amount}>
-            ${JSON.stringify(props.maxBudget)}
-          </span>
+          <span className={styles.amount}>${String(props.maxBudget)}</span>
         )}
       </ListGroup.Item>
       <ListGroup.Item className={styles.listItem}>

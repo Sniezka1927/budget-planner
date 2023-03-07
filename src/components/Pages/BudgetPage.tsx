@@ -32,7 +32,7 @@ ChartJS.register(
 
 const BudgetPage: React.FC = () => {
   const budgetCtx = useContext(BudgetContext);
-  const [budget, setBudget] = useState<Number>(budgetCtx.budget);
+  const [budget, setBudget] = useState<number>(budgetCtx.budget);
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const options = {

@@ -10,8 +10,8 @@ interface actionPayload {
   date?: Date;
   title?: string;
   categoryTitle?: string;
-  amount?: Number;
-  maxBudget?: Number;
+  amount?: number;
+  maxBudget?: number;
 }
 
 export default actionPayload;

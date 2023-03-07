@@ -1,6 +1,6 @@
 export default interface Transaction {
   id: string;
-  amount: Number;
+  amount: number;
   title: string;
   categoryTitle: string;
   date: Date;

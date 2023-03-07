@@ -5,7 +5,7 @@ const Remaining = () => {
   const budgetContext = useContext(BudgetContext);
   return (
     <div className={styles.container}>
-      <span>Remaining: {JSON.stringify(budgetContext.remaining)}$</span>
+      <span>Remaining: {String(budgetContext.remaining)}$</span>
     </div>
   );
 };

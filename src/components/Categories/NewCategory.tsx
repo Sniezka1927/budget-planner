@@ -11,7 +11,7 @@ import Alert from "react-bootstrap/Alert";
 
 const NewCategory = (props: newCategoryProps) => {
   const [title, setTitle] = useState<string>("");
-  const [dedicatedAmount, setDedicatedAmount] = useState<Number>(0);
+  const [dedicatedAmount, setDedicatedAmount] = useState<number>(0);
 
   const [isCorrect, setIsCorrect] = useState<boolean>(true);
 

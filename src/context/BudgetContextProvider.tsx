@@ -33,42 +33,42 @@ const defaultBudgetState: defaultState = {
   ],
   categories: [
     {
-      id: JSON.stringify(~~(Math.random() * 100000)),
+      id: String(~~(Math.random() * 100000)),
       title: "Shopping",
       maxBudget: 500,
       totalSpend: 0,
       amountLeft: 500,
     },
     {
-      id: JSON.stringify(~~(Math.random() * 100000)),
+      id: String(~~(Math.random() * 100000)),
       title: "Home",
       maxBudget: 5000,
       totalSpend: 1000,
       amountLeft: 4000,
     },
     {
-      id: JSON.stringify(~~(Math.random() * 100000)),
+      id: String(~~(Math.random() * 100000)),
       title: "Car & Transport",
       maxBudget: 500,
       totalSpend: 0,
       amountLeft: 500,
     },
     {
-      id: JSON.stringify(~~(Math.random() * 100000)),
+      id: String(~~(Math.random() * 100000)),
       title: "Activities and Travels",
       maxBudget: 500,
       totalSpend: 0,
       amountLeft: 500,
     },
     {
-      id: JSON.stringify(~~(Math.random() * 100000)),
+      id: String(~~(Math.random() * 100000)),
       title: "Finance",
       maxBudget: 500,
       totalSpend: 0,
       amountLeft: 500,
     },
     {
-      id: JSON.stringify(~~(Math.random() * 100000)),
+      id: String(~~(Math.random() * 100000)),
       title: "Needs",
       maxBudget: 500,
       totalSpend: 150,
@@ -114,7 +114,7 @@ const budgetReducer = (
     state.remaining -= action.amount;
     const transactions = [
       {
-        id: JSON.stringify(~~(Math.random() * 10000)),
+        id: String(~~(Math.random() * 10000)),
         amount: action.amount,
         date: action.date,
         categoryTitle: action.categoryTitle,
@@ -154,7 +154,7 @@ const budgetReducer = (
   } else if (action.type === "ADD-CATEGORY") {
     const categories = [
       {
-        id: JSON.stringify(~~(Math.random() * 100000)),
+        id: String(~~(Math.random() * 100000)),
         title: action.title,
         maxBudget: action.maxBudget,
         totalSpend: 0,
@@ -223,7 +223,7 @@ const BudgetContextProvider = (props: budgetProvider) => {
     date: Date,
     title: string,
     categoryTitle: string,
-    amount: Number
+    amount: number
   ) => {
     dispatchBudgetAction({
       type: "ADD-TRANSACTION",
@@ -241,7 +241,7 @@ const BudgetContextProvider = (props: budgetProvider) => {
     });
   };
 
-  const addCategoryHandler = (title: string, maxBudget: Number) => {
+  const addCategoryHandler = (title: string, maxBudget: number) => {
     dispatchBudgetAction({
       type: "ADD-CATEGORY",
       title: title,
@@ -255,7 +255,7 @@ const BudgetContextProvider = (props: budgetProvider) => {
       id: id,
     });
   };
-  const setBudgetHandler = (budget: Number) => {
+  const setBudgetHandler = (budget: number) => {
     dispatchBudgetAction({
       type: "SET-BUDGET",
       budget: budget,
@@ -265,7 +265,7 @@ const BudgetContextProvider = (props: budgetProvider) => {
   const updateCategoryHandler = (
     id: string,
     title: string,
-    amountDedicated: Number
+    amountDedicated: number
   ) => {
     dispatchBudgetAction({
       type: "ADJUST-CATEGORY",

@@ -13,7 +13,7 @@ import Alert from "react-bootstrap/Alert";
 const NewTransaction = (props: newTransactionProps) => {
   const budgetCtx = useContext(BudgetContext);
 
-  const [amount, setAmount] = useState<Number>(Number);
+  const [amount, setAmount] = useState<number>(Number);
   const [title, setTitle] = useState<string>("");
   const [categoryTitle, setCategoryTitle] = useState<string>("Shopping");
   const [date, setDate] = useState<string>("");

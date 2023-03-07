@@ -7,7 +7,7 @@ interface chartData {
 interface datasets {
   backgroundColor: string;
   label: string;
-  data: Array<Number>;
+  data: Array<number>;
 }
 
 export default chartData;

@@ -1,5 +1,5 @@
 interface months {
-  id: Number;
+  id: number;
   title: string;
 }
 

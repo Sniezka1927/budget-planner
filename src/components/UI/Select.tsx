@@ -13,7 +13,7 @@ const Select = (props: selectProps) => {
       </option>
       {props.options.map((option) => {
         return (
-          <option key={JSON.stringify(option.id)} value={option.title}>
+          <option key={String(option.id)} value={option.title}>
             {option.title}
           </option>
         );
